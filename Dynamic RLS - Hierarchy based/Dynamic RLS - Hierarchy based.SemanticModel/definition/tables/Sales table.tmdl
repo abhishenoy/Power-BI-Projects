@@ -1,0 +1,48 @@
+table 'Sales table'
+	lineageTag: 1021a179-71dc-4e6f-a43e-c4ba1d0ae94f
+
+	column SaleID
+		dataType: string
+		lineageTag: e47b0fd1-2277-4441-89f4-a834ce794576
+		summarizeBy: none
+		sourceColumn: SaleID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmployeeID
+		dataType: int64
+		formatString: 0
+		lineageTag: a159b4bc-b00f-4901-89ff-c96ff5c6a219
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		lineageTag: 4a5d8b79-e170-46c6-ac4d-28facd47ac46
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 5f788d5f-eed9-44b7-b26d-59db6d0b58b6
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Sales table' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WCjZU0lEyB2KfxIKS/AIgw9DAQClWByhjBOSYArFvfmlxKpA2gkkYAzkmYIm8zJL8IpAeU6gUSNgMiL1TK5PyE4tSgExjmDaQWUbINhnBdIF0GCPZZGgElQA5zBDFJhOYaRZQdyPZZAGUigUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [SaleID = _t, EmployeeID = _t, Product = _t, Amount = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"SaleID", type text}, {"EmployeeID", Int64.Type}, {"Product", type text}, {"Amount", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "9cf401d0d70e05e4c620",
+  "position": {
+    "x": 245.30119591135102,
+    "y": 72.68183582558548,
+    "z": 2,
+    "height": 145.36367165117096,
+    "width": 1040.2587752536922
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Hierarchy table"
+                    }
+                  },
+                  "Property": "Report Viewer"
+                }
+              },
+              "queryRef": "Hierarchy table.Report Viewer",
+              "nativeQueryRef": "Report Viewer"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

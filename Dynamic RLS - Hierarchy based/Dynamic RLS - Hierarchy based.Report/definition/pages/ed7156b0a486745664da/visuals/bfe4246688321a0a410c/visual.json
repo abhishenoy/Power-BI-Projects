@@ -1,0 +1,111 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "bfe4246688321a0a410c",
+  "position": {
+    "x": 1117.4832258183767,
+    "y": 247.57250328090055,
+    "z": 1,
+    "height": 583.94149807377335,
+    "width": 616.52541364852709
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales table"
+                    }
+                  },
+                  "Property": "EmployeeID"
+                }
+              },
+              "queryRef": "Sales table.EmployeeID",
+              "nativeQueryRef": "EmployeeID"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Hierarchy table"
+                    }
+                  },
+                  "Property": "Path"
+                }
+              },
+              "queryRef": "Hierarchy table.Path",
+              "nativeQueryRef": "Path"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Hierarchy table"
+                    }
+                  },
+                  "Property": "Email"
+                }
+              },
+              "queryRef": "Hierarchy table.Email",
+              "nativeQueryRef": "Email"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e834297bd22d85d0232c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Hierarchy table"
+              }
+            },
+            "Property": "Path"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

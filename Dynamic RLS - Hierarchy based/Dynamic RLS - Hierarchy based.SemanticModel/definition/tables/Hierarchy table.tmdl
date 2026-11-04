@@ -1,0 +1,74 @@
+table 'Hierarchy table'
+	lineageTag: b412f3d1-8b0f-486b-997e-b63f4407def9
+
+	measure 'Report Viewer' = USERPRINCIPALNAME()
+		lineageTag: bff50df0-4c27-4b9c-b099-98c7e4292c49
+
+	column EmployeeID
+		dataType: string
+		lineageTag: 25d9b6db-d0e1-4196-b425-b49467e4efef
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 94aa5fb0-e150-4418-8ec8-e69c6ae6c2ed
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ManagerID
+		dataType: string
+		lineageTag: 6d3f52e3-d70b-4f8b-9327-76f6e24645a7
+		summarizeBy: none
+		sourceColumn: ManagerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: d51c9756-5919-41a9-bb8e-235aac2c4bac
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Path =
+			
+			PATH ( 'Hierarchy table'[EmployeeID], 'Hierarchy table'[ManagerID Clean] )
+		lineageTag: a57d097c-1a0e-44cc-95d4-47b80eec6f4c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ManagerID Clean' =
+			
+			IF (
+			    ISBLANK ( 'Hierarchy table'[ManagerID] ) || 'Hierarchy table'[ManagerID] = "",
+			    BLANK (),
+			    'Hierarchy table'[ManagerID]
+			)
+		lineageTag: 83f65623-64dd-441d-a946-a5f72200d0bc
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Hierarchy table' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("bY7LCsIwEEX/ZdZB6Hur4E4E0WXoYtBCgzaW1AqFfLx3hq5MITDnDofMtZYyMnTw7sOYeCy4v7+Hkf2yw8Quo9ZYykFX7ueXbgwF4X8z5uoW4EtwC6/uKJy4hbol+DaHbuoBcmTSkP4cS/UrpHPXeV71QXjDrtSukU4c2GNKq6dw2iTWajdIR/fV3tLrIbzVJDbUtj8=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [EmployeeID = _t, Name = _t, ManagerID = _t, Email = _t, Path = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"EmployeeID", Int64.Type}, {"Name", type text}, {"ManagerID", type text}, {"Email", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Path"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

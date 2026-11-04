@@ -1,0 +1,4 @@
+relationship AutoDetected_7abe90fe-fe04-4b42-910c-95ce3523f0f1
+	fromColumn: 'Sales table'.EmployeeID
+	toColumn: 'Hierarchy table'.EmployeeID
+

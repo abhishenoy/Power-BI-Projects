@@ -1,0 +1,14 @@
+role Untitled
+	modelPermission: read
+
+	tablePermission 'Hierarchy table' =
+			PATHCONTAINS (
+			    'Hierarchy table'[Path],
+			    LOOKUPVALUE (
+			        'Hierarchy table'[EmployeeID],
+			        'Hierarchy table'[Email], USERPRINCIPALNAME ()
+			    )
+			)
+
+	annotation PBI_Id = f35a20c5c34f45a2a89e9f5906f8e8b4
+

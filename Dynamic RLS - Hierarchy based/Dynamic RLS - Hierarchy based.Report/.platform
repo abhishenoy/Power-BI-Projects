@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Dynamic RLS - Hierarchy based"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "323c19fe-4e24-4e65-824b-47556d5fe757"
+  }
+}
